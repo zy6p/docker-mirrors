@@ -10,6 +10,7 @@ function push_to_docker(){
   docker pull $IMAGE
   docker tag $IMAGE $MIRROR_NAME:$TAG
   docker push $MIRROR_NAME:$TAG
+  docker image rm $MIRROR_NAME:$TAG
 }
 export -f push_to_docker
 echo $IMAGE_NAME $MIRROR_NAME
