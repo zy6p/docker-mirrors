@@ -62,7 +62,6 @@ do
     if [[ $count -gt 0 ]];then
         # echo -e "IMAGE [$i:$tag]:"
         echo -e "${tags}"
-        echo -e "${tags#*/}"
         # echo
     fi
 done

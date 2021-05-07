@@ -1,0 +1,4 @@
+postgis/postgis registry.cn-hangzhou.aliyuncs.com/opengis/postgis
+osgeo/gdal registry.cn-hangzhou.aliyuncs.com/opengis/gdal
+geonetwork registry.cn-hangzhou.aliyuncs.com/opengis/geonetwork
+qgis/qgis registry.cn-hangzhou.aliyuncs.com/opengis/qgis
