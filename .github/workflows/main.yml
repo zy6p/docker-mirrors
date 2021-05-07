@@ -1,0 +1,32 @@
+name: Docker PostGIS CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '15 5 * * 1'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  
+  docker-images-mirrors:
+    name: mirror docker image for opengis
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v2
+
+    - name: Login to dockerhub
+      if: ${{  (github.ref == 'refs/heads/master') && (github.event_name != 'pull_request')  }}
+      env:
+        DOCKERHUB_ALIYUN_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_ALIYUN_PASSWORD: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      run: docker login -u $DOCKERHUB_ALIYUN_USERNAME -p $DOCKERHUB_ALIYUN_PASSWORD registry.cn-hangzhou.aliyuncs.com
+
+    - name: mirror docker image for opengis
+      run: make mirror
+
