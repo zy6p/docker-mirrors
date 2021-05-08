@@ -28,5 +28,7 @@ jobs:
       run: docker login -u $DOCKERHUB_ALIYUN_USERNAME -p $DOCKERHUB_ALIYUN_PASSWORD registry.cn-hangzhou.aliyuncs.com
 
     - name: mirror docker image for opengis
-      run: make mirror
+      run: |
+        sudo apt-get install parallel -y
+        make mirror
 
