@@ -1,4 +1,4 @@
-name: Docker PostGIS CI
+name: Docker Mirrors CI
 
 on:
   push:
@@ -13,7 +13,12 @@ defaults:
 jobs:
   
   docker-images-mirrors:
-    name: mirror docker image for opengis
+    strategy:
+      matrix:
+        image: [postgis, gdal, qgis, geonetwork, elasticsearch, kibana, redis, logstash, mysql, mongo]
+    name: mirror docker image for ${{ matrix.image }}
+    env:
+      IMAGE_NAME: ${{ matrix.image }}
     runs-on: ubuntu-20.04
 
     steps:
@@ -27,8 +32,7 @@ jobs:
         DOCKERHUB_ALIYUN_PASSWORD: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       run: docker login -u $DOCKERHUB_ALIYUN_USERNAME -p $DOCKERHUB_ALIYUN_PASSWORD registry.cn-hangzhou.aliyuncs.com
 
-    - name: mirror docker image for opengis
+    - name: pull and push
       run: |
-        sudo apt-get install parallel -y
-        make mirror
+        make $IMAGE_NAME
 
