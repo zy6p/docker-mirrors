@@ -8,4 +8,3 @@ redis registry.cn-hangzhou.aliyuncs.com/opengis/redis
 logstash registry.cn-hangzhou.aliyuncs.com/opengis/logstash
 mysql registry.cn-hangzhou.aliyuncs.com/opengis/mysql
 mongo registry.cn-hangzhou.aliyuncs.com/opengis/mongo
-mariadb registry.cn-hangzhou.aliyuncs.com/opengis/mariadb
